@@ -3,8 +3,8 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-path = 'driver/chromedriver.exe'
-browser = webdriver.Chrome(path)
+path = 'driver/msedgedriver-122.0.2365.59.exe'
+browser = webdriver.Edge(executable_path=path)
 
 url = 'https://item.jd.com/100071377749.html'
 # 访问京东网站
@@ -19,7 +19,7 @@ if browser.current_url == ('https://passport.jd.com/new/login.aspx?ReturnUrl=htt
     text_pwd.send_keys('5422xyc')
     text_login = browser.find_element(By.ID, 'loginsubmit')
     text_login.click()
-time.sleep(60)
+time.sleep(10)
 contents = browser.find_elements(By.CLASS_NAME, 'comment-item')
 print(contents)
 browser.quit()
