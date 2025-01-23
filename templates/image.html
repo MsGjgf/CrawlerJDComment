@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>显示图片</title>
+    <script>
+        // 定义初始图片链接
+        let imageUrl = "{{ image_url }}";
+
+        // 每隔5秒检查一次图片链接是否变化
+        setInterval(function () {
+            // 这里假设你有一个后端的接口（比如 /check_image_link）可以获取到最新的图片链接
+            // 实际应用中需要根据你的后端实现来调整这里的请求逻辑
+            fetch('/check_image_link')
+              .then(response => response.json())
+              .then(data => {
+                    if (data.new_image_link!== imageUrl) {
+                        // 如果图片链接变化了，更新页面上的图片
+                        imageUrl = data.new_image_link;
+                        document.getElementById('myImage').src = imageUrl;
+                    }
+                });
+        }, 1000);
+    </script>
+</head>
+
+<body>
+    <img id="myImage" src="{{ image_url }}" alt="要显示的图片">
+</body>
+
+</html>
